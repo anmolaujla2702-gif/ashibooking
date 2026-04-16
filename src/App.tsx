@@ -134,7 +134,7 @@ export default function App() {
                   
                   <div className="min-h-[600px] bg-white">
                     <InlineWidget 
-                      url="https://calendly.com/ashi-os/30min" 
+                      url="https://calendly.com/anmolaujla2702/new-meeting-1" 
                       prefill={calendlyPrefill}
                       styles={{
                         height: '650px',
