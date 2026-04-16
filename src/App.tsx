@@ -44,6 +44,16 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-bg text-text-primary font-sans flex flex-col">
+      {/* Trust Bar */}
+      <div className="bg-white/5 border-b border-border py-2 px-8 md:px-12 flex flex-wrap justify-center md:justify-start gap-x-8 gap-y-2 shrink-0">
+        <div className="flex items-center gap-2 text-[10px] md:text-[11px] uppercase tracking-[0.15em] text-text-secondary">
+          <span className="text-green-500 font-bold">✓</span> HIPAA-Compliant & BAA Signed
+        </div>
+        <div className="flex items-center gap-2 text-[10px] md:text-[11px] uppercase tracking-[0.15em] text-text-secondary">
+          <span className="text-green-500 font-bold">✓</span> 47 Healthcare Practices Audited
+        </div>
+      </div>
+
       {/* Header */}
       <header className="px-8 md:px-12 py-8 flex justify-between items-center border-b border-border shrink-0">
         <div className="font-bold tracking-tighter text-xl uppercase">ASHI OS</div>
