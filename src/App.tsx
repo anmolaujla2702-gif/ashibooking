@@ -134,14 +134,25 @@ export default function App() {
         </div>
       </div>
 
-      <header className="px-8 md:px-12 py-6 flex justify-between items-center bg-bg/80 backdrop-blur-md sticky top-0 z-50 border-b border-white/5">
-        <div className="font-bold tracking-tighter text-xl uppercase italic text-white">ASHI OS</div>
-        <div className="text-[11px] uppercase tracking-[0.15em] text-text-secondary flex items-center gap-2 font-semibold">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-          </span>
-          Priority Invitation
+      <header className="px-8 md:px-12 py-5 flex justify-between items-center bg-bg/80 backdrop-blur-md sticky top-0 z-50 border-b border-white/5">
+        <div className="flex items-center gap-2">
+          <ShieldCheck size={24} className="text-white/80" />
+          <div className="font-bold tracking-tighter text-xl uppercase italic text-white">ASHI OS</div>
+        </div>
+        <div className="flex items-center gap-6">
+          <div className="hidden md:flex text-[11px] uppercase tracking-[0.15em] text-text-secondary items-center gap-2 font-semibold">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            </span>
+            Priority Invitation
+          </div>
+          <button 
+            onClick={scrollToCalendar}
+            className="bg-white text-bg px-5 py-2 rounded-full font-bold text-sm hover:bg-white/90 transition-all shadow-lg shadow-white/5 uppercase tracking-tighter"
+          >
+            Book Now
+          </button>
         </div>
       </header>
 
@@ -149,83 +160,123 @@ export default function App() {
         <AnimatePresence>
           {isLoaded && (
             <>
-              {/* HERO SECTION */}
-              <section className="relative px-6 py-20 md:py-32 overflow-hidden border-b border-border">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)] pointer-events-none" />
-                
-                <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] text-white">
-                      Your 30-Day Revenue Audit <br />
-                      <span className="text-text-secondary font-light">
-                        (And the Exact Playbook to Recover $40k–$120k)
-                      </span>
-                    </h1>
-                  </motion.div>
-
-                  <motion.p 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    className="text-lg md:text-2xl text-text-secondary max-w-3xl mx-auto font-light leading-relaxed"
-                  >
-                    {params.name ? `${params.name}, most` : "Most"} practices are leaving <span className="text-white font-medium">$100k–$300k on the table annually</span> in invisible patient revenue. We'll show you exactly where yours is and how to recover it in the next 30 days.
-                  </motion.p>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="flex flex-col items-center gap-4 pt-6"
-                  >
-                    <button 
-                      onClick={scrollToCalendar}
-                      className="bg-white text-bg px-10 py-5 rounded-full font-bold text-lg hover:bg-white/90 transition-all shadow-xl shadow-white/10 group uppercase tracking-tight"
+              {/* HERO SECTION - SPLIT LAYOUT */}
+              <section className="relative overflow-hidden border-b border-border bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.05)_0%,transparent_50%)]">
+                <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-6 py-12 md:py-20 lg:py-24">
+                  {/* Left Column: Content */}
+                  <div className="space-y-8 relative z-10 text-center lg:text-left">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6 }}
                     >
-                      Ready to See Your Numbers?
-                      <ArrowRight className="inline-block ml-2 group-hover:translate-x-1 transition-transform" size={20} />
-                    </button>
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] uppercase tracking-[0.2em] text-text-secondary font-bold mb-6">
+                        <TrendingUp size={12} className="text-green-500" />
+                        Next-Gen Patient Retention
+                      </div>
+                      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-white">
+                        Your 30-Day <br /> 
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40">Revenue Audit</span>
+                      </h1>
+                      <p className="mt-4 text-lg md:text-xl text-text-secondary font-light">
+                        Extract <span className="text-white font-medium">$40k–$120k</span> in hidden patient revenue without spending more on ads.
+                      </p>
+                    </motion.div>
+
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.1 }}
+                      className="space-y-4"
+                    >
+                      <div className="flex flex-col gap-3">
+                        {[
+                          "Calculate your specific annual leakage",
+                          "Identify fastest Month 1 recovery systems",
+                          "Receive your 30-Day Implementation Playbook"
+                        ].map((point, i) => (
+                          <div key={i} className="flex items-center gap-3 text-sm text-text-secondary justify-center lg:justify-start">
+                            <div className="w-5 h-5 rounded-full bg-green-500/10 flex items-center justify-center shrink-0">
+                              <Check size={12} className="text-green-500" strokeWidth={3} />
+                            </div>
+                            {point}
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
+
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.2 }}
+                      className="pt-4"
+                    >
+                      <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
+                        <button 
+                          onClick={scrollToCalendar}
+                          className="w-full sm:w-auto bg-white text-bg px-8 py-4 rounded-full font-bold text-base hover:bg-white/90 transition-all shadow-2xl shadow-white/10 flex items-center justify-center gap-2 group uppercase tracking-tight"
+                        >
+                          Ready to See Your Numbers?
+                          <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
+                        </button>
+                      </div>
+                      <div className="mt-6 flex items-center gap-4 justify-center lg:justify-start opacity-50 grayscale hover:grayscale-0 transition-all cursor-default">
+                        <span className="text-[10px] uppercase tracking-widest font-bold">Trusted by leading clinics:</span>
+                        <div className="flex gap-4">
+                          <Building2 size={16} />
+                          <ShieldCheck size={16} />
+                          <Mail size={16} />
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
+
+                  {/* Right Column: Calendly Integrated */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                    id="calendar-section"
+                    className="relative"
+                  >
+                    <div className="absolute -inset-4 bg-white/5 blur-3xl rounded-full opacity-20 pointer-events-none" />
+                    <div className="bg-surface border border-white/5 p-2 rounded-[32px] shadow-2xl relative overflow-hidden">
+                      <div className="bg-bg/50 backdrop-blur-sm px-4 py-3 border-b border-white/5 flex items-center justify-between rounded-t-[30px]">
+                        <div className="flex gap-1.5">
+                          <div className="w-2.5 h-2.5 rounded-full bg-red-500/20" />
+                          <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/20" />
+                          <div className="w-2.5 h-2.5 rounded-full bg-green-500/20" />
+                        </div>
+                        <div className="text-[10px] font-bold text-white/30 tracking-[0.2em] uppercase flex items-center gap-2">
+                          <Calendar size={12} className="text-green-500" />
+                          Schedule Audit
+                        </div>
+                        <div className="w-8" />
+                      </div>
+                      
+                      <div className="overflow-hidden rounded-b-[28px] bg-white h-[600px]">
+                        <InlineWidget 
+                          url="https://calendly.com/anmolaujla2702/new-meeting-1" 
+                          prefill={calendlyPrefill}
+                          styles={{
+                            height: '600px',
+                            width: '100%'
+                          }}
+                          pageSettings={{
+                            backgroundColor: 'ffffff',
+                            hideEventTypeDetails: true,
+                            hideLandingPageDetails: true,
+                            primaryColor: '09090b',
+                            textColor: '09090b'
+                          }}
+                        />
+                      </div>
+                      
+                      <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-white text-bg px-4 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border-2 border-bg shadow-xl pointer-events-none">
+                        5 Spots Left
+                      </div>
+                    </div>
                   </motion.div>
-                </div>
-              </section>
-
-              {/* SECTION: Integrated Calendly (Moved Up) */}
-              <section id="calendar-section" className="px-6 py-20 md:py-32 bg-white/[0.02] border-b border-border">
-                <div className="max-w-4xl mx-auto space-y-12 text-center">
-                  <div className="space-y-6">
-                    <div className="text-[10px] md:text-xs font-bold text-white/40 uppercase tracking-[0.4em] flex items-center justify-center gap-3">
-                      <Calendar size={14} className="text-green-500" />
-                      Onboarding 3–4 practices this month
-                    </div>
-                  </div>
-
-                  <div className="bg-surface border border-white/5 p-4 md:p-8 rounded-[48px] shadow-2xl relative">
-                    <div className="absolute top-[-20px] left-1/2 -translate-x-1/2 bg-white text-bg px-5 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border-4 border-bg shadow-[0_10px_30px_rgba(255,255,255,0.1)]">
-                      5 Spots Available This Week
-                    </div>
-
-                    <div className="overflow-hidden rounded-[32px] bg-white">
-                      <InlineWidget 
-                        url="https://calendly.com/anmolaujla2702/new-meeting-1" 
-                        prefill={calendlyPrefill}
-                        styles={{
-                          height: '750px',
-                          width: '100%'
-                        }}
-                        pageSettings={{
-                          backgroundColor: 'ffffff',
-                          hideEventTypeDetails: true,
-                          hideLandingPageDetails: true,
-                          primaryColor: '09090b',
-                          textColor: '09090b'
-                        }}
-                      />
-                    </div>
-                  </div>
                 </div>
               </section>
 
@@ -421,6 +472,28 @@ export default function App() {
                       answer='Yes. We work with MedSpas, dental practices, dermatology clinics, cosmetic surgery, and medical aesthetics.'
                     />
                   </div>
+                </div>
+              </section>
+
+              {/* SECTION: Final CTA */}
+              <section className="px-6 py-24 bg-white/[0.02]">
+                <div className="max-w-4xl mx-auto text-center space-y-10">
+                  <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white leading-[1.1]">Ready to Stop the Leak?</h2>
+                  <p className="text-text-secondary text-lg font-light max-w-2xl mx-auto">
+                    Take the first step toward recovering your clinic's hidden revenue. It only takes 15 minutes to gain 100% clarity.
+                  </p>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <button 
+                      onClick={scrollToCalendar}
+                      className="bg-white text-bg px-12 py-6 rounded-full font-bold text-xl hover:bg-white/90 transition-all shadow-2xl shadow-white/10 group uppercase tracking-tight"
+                    >
+                      Book My Free Revenue Audit
+                      <ArrowRight className="inline-block ml-2 group-hover:translate-x-1 transition-transform" size={24} />
+                    </button>
+                  </motion.div>
                 </div>
               </section>
 
